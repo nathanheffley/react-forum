@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Thread;
 use Illuminate\Http\Request;
 
 class ThreadsController extends Controller
 {
+    public function show(Thread $thread)
+    {
+        return view('threads.show', compact('thread'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
