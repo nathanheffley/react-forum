@@ -19,6 +19,11 @@ export default class CreateThread extends Component {
         axios.post('/threads', {
             title: this.state.title,
             content: this.state.content
+        })
+        .then(response => {
+            this.setState({title: '', content: ''});
+            document.getElementById('new-thread-title').value = '';
+            document.getElementById('new-thread-content').value = '';
         });
     }
 
