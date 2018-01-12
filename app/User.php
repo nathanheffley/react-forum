@@ -19,6 +19,6 @@ class User extends Authenticatable
 
     public function threads()
     {
-        return $this->hasMany('App\Thread');
+        return $this->hasMany('App\Thread', 'author_id');
     }
 }

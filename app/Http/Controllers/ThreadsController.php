@@ -20,7 +20,7 @@ class ThreadsController extends Controller
         ]);
 
         $thread = Thread::create([
-            'user_id' => \Auth::user()->id,
+            'author_id' => \Auth::user()->id,
             'title' => $request->title,
             'content' => $request->content
         ]);
