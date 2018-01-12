@@ -23835,6 +23835,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23846,55 +23848,104 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var Example = function (_Component) {
-    _inherits(Example, _Component);
 
-    function Example() {
-        _classCallCheck(this, Example);
+var CreateThread = function (_Component) {
+    _inherits(CreateThread, _Component);
 
-        return _possibleConstructorReturn(this, (Example.__proto__ || Object.getPrototypeOf(Example)).apply(this, arguments));
+    function CreateThread(props) {
+        _classCallCheck(this, CreateThread);
+
+        var _this = _possibleConstructorReturn(this, (CreateThread.__proto__ || Object.getPrototypeOf(CreateThread)).call(this, props));
+
+        _this.state = {
+            title: '',
+            content: ''
+        };
+
+        _this.postThread = _this.postThread.bind(_this);
+        _this.changeTitle = _this.changeTitle.bind(_this);
+        _this.changeContent = _this.changeContent.bind(_this);
+        return _this;
     }
 
-    _createClass(Example, [{
+    _createClass(CreateThread, [{
+        key: 'postThread',
+        value: function postThread() {
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/threads', {
+                title: this.state.title,
+                content: this.state.content
+            });
+        }
+    }, {
+        key: 'changeTitle',
+        value: function changeTitle(event) {
+            this.setState({ title: event.target.value });
+        }
+    }, {
+        key: 'changeContent',
+        value: function changeContent(event) {
+            this.setState({ content: event.target.value });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
-                { className: 'container' },
+                { className: 'panel panel-default' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { className: 'row' },
+                    { className: 'panel-heading' },
+                    'Create a New Thread'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'panel-body' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'div',
-                        { className: 'col-md-8 col-md-offset-2' },
+                        'form',
+                        null,
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
-                            { className: 'panel panel-default' },
+                            { className: 'form-group' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'panel-heading' },
-                                'Example Component'
+                                'label',
+                                { htmlFor: 'new-thread-title' },
+                                'Title'
                             ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'new-thread-title', className: 'form-control', onChange: this.changeTitle })
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'form-group' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                'div',
-                                { className: 'panel-body' },
-                                'I\'m an example component!'
-                            )
+                                'label',
+                                { htmlFor: 'new-thread-content' },
+                                'Title'
+                            ),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { id: 'new-thread-content', className: 'form-control', onChange: this.changeContent, rows: '8' })
                         )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'panel-footer' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'button',
+                        { className: 'btn btn-primary', onClick: this.postThread },
+                        'Publish'
                     )
                 )
             );
         }
     }]);
 
-    return Example;
+    return CreateThread;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Example);
+/* harmony default export */ __webpack_exports__["default"] = (CreateThread);
 
 
-if (document.getElementById('example')) {
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Example, null), document.getElementById('example'));
+if (document.getElementById('create-thread')) {
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CreateThread, null), document.getElementById('create-thread'));
 }
 
 /***/ }),
