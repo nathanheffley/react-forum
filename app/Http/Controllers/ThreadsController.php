@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ThreadsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('show');
+    }
+
     public function show(Thread $thread)
     {
         return view('threads.show', compact('thread'));
